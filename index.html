@@ -6,30 +6,32 @@
 
 <!-- SEO -->
 <title>أحوال الطقس وحالة البحر — القصر الصغير | Météo Ksar Sghir | Weather Ksar Sghir</title>
-<meta name="description" content="أحوال الطقس وحالة البحر في القصر الصغير — نشرة جوية 7 أيام + حالة البحر 24 ساعة. Météo et état de la mer à Ksar Sghir Maroc."/>
+<meta name="description" content="أحوال الطقس وحالة البحر في القصر الصغير — نشرة جوية 7 أيام + رياح + حالة البحر 24 ساعة. Météo et état de la mer à Ksar Sghir Maroc."/>
 <meta name="keywords" content="طقس القصر الصغير, meteo ksar sghir, weather ksar sghir, حالة البحر, état de la mer, nord maroc météo"/>
 <meta name="author" content="Bilal El Hichou"/>
 <meta name="robots" content="index, follow"/>
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="أحوال الطقس — القصر الصغير | Météo Ksar Sghir"/>
-<meta property="og:description" content="نشرة جوية 7 أيام + حالة البحر 24 ساعة للقصر الصغير"/>
+<meta property="og:description" content="نشرة جوية 7 أيام + رياح + حالة البحر 24 ساعة للقصر الصغير"/>
 <meta property="og:url" content="https://meteo.ksarsghir.com"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="canonical" href="https://meteo.ksarsghir.com"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --bg:#0a0f1a; --bg2:#16213e; --bg3:#1a2a40;
-  --text:#e0e0e0; --text2:#aaa; --text3:#666;
-  --border:rgba(0,180,216,0.15); --accent:#00b4d8;
-  --header-bg:linear-gradient(135deg,#1a1a2e,#16213e);
+--bg:#0a0f1a; --bg2:#16213e; --bg3:#1a2a40;
+--text:#e0e0e0; --text2:#aaa; --text3:#666;
+--border:rgba(0,180,216,0.15); --accent:#00b4d8;
+--header-bg:linear-gradient(135deg,#1a1a2e,#16213e);
+--bar-bg: rgba(255, 255, 255, 0.08);
 }
 body.light {
-  --bg:#f0f4f8; --bg2:#fff; --bg3:#e8edf5;
-  --text:#1a1a2e; --text2:#555; --text3:#999;
-  --border:rgba(0,180,216,0.2);
-  --header-bg:linear-gradient(135deg,#e8edf5,#fff);
+--bg:#f0f4f8; --bg2:#fff; --bg3:#e8edf5;
+--text:#1a1a2e; --text2:#555; --text3:#999;
+--border:rgba(0,180,216,0.2);
+--header-bg:linear-gradient(135deg,#e8edf5,#fff);
+--bar-bg: rgba(0, 0, 0, 0.05);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:"Tajawal",sans-serif; background:var(--bg); color:var(--text); min-height:100vh; transition:background 0.3s,color 0.3s; }
@@ -64,41 +66,107 @@ nav::-webkit-scrollbar { display:none; }
 .current-temp span { font-size:20px; color:var(--text2); }
 .current-desc { font-size:16px; color:#90e0ef; margin-top:5px; }
 .current-location { font-size:13px; color:var(--text2); }
-.current-details { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.detail-item { background:rgba(0,180,216,0.06); border-radius:10px; padding:12px; text-align:center; }
-.detail-val { font-size:18px; font-weight:700; color:var(--accent); }
-.detail-label { font-size:11px; color:var(--text2); margin-top:3px; }
+.current-details { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.detail-item { background:rgba(0,180,216,0.06); border-radius:10px; padding:12px 6px; text-align:center; }
+.detail-val { font-size:16px; font-weight:700; color:var(--accent); }
+.detail-label { font-size:10px; color:var(--text2); margin-top:3px; }
+.sun-row { grid-column:1/-1; text-align:center; font-size:13px; color:var(--text2); margin-top:6px; padding-top:14px; border-top:1px solid var(--border); }
+.sun-row b { color:var(--text); font-weight:700; }
+
 .section-title { font-size:16px; font-weight:700; color:var(--text); margin-bottom:15px; display:flex; align-items:center; gap:8px; padding-bottom:10px; border-bottom:1px solid var(--border); }
 .section-title::before { content:""; width:3px; height:18px; background:var(--accent); border-radius:2px; }
+
 .sea-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:25px; }
-.sea-status { display:flex; align-items:center; justify-content:center; gap:15px; margin-bottom:20px; padding:15px; border-radius:12px; }
+.sea-status { display:flex; align-items:center; justify-content:center; gap:15px; margin-bottom:18px; padding:15px; border-radius:12px; }
 .sea-status.calm { background:rgba(0,180,216,0.1); border:1px solid rgba(0,180,216,0.3); }
 .sea-status.moderate { background:rgba(243,156,18,0.1); border:1px solid rgba(243,156,18,0.3); }
-.sea-status.rough { background:rgba(231,76,60,0.1); border:1px solid rgba(231,76,60,0.3); }
+.sea-status.rough { background:rgba(230,126,34,0.12); border:1px solid rgba(230,126,34,0.35); }
+.sea-status.danger { background:rgba(231,76,60,0.1); border:1px solid rgba(231,76,60,0.3); }
 .sea-icon { font-size:36px; }
 .sea-text h3 { font-size:20px; font-weight:700; }
 .sea-text p { font-size:13px; color:var(--text2); }
 .calm .sea-text h3 { color:var(--accent); }
 .moderate .sea-text h3 { color:#f39c12; }
-.rough .sea-text h3 { color:#e74c3c; }
+.rough .sea-text h3 { color:#e67e22; }
+.danger .sea-text h3 { color:#e74c3c; }
+.sea-summary { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:18px; }
+.sea-sum-item { background:rgba(0,0,0,0.18); border:1px solid var(--border); border-radius:10px; padding:12px 6px; text-align:center; }
+.sea-sum-val { font-size:17px; font-weight:800; color:var(--accent); }
+.sea-sum-label { font-size:10px; color:var(--text2); margin-top:3px; }
 .sea-hours { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
 .sea-hour { background:rgba(0,0,0,0.2); border-radius:10px; padding:10px 5px; text-align:center; border:1px solid var(--border); }
 .sea-hour .time { font-size:11px; color:var(--text2); }
 .sea-hour .wave { font-size:18px; margin:5px 0; }
 .sea-hour .height { font-size:12px; font-weight:700; color:var(--accent); }
-.sea-hour .wind { font-size:10px; color:var(--text3); }
+.sea-hour .wind { font-size:10px; color:var(--text3); margin-top:2px; }
+.sea-note { font-size:11px; color:var(--text3); text-align:center; margin-top:14px; }
+
+/* TIDE */
+.tide-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:25px; }
+.tide-state { text-align:center; font-size:14px; color:var(--text2); margin-bottom:15px; }
+.tide-state b { color:var(--text); font-weight:800; }
+.tide-bar-wrap { background:rgba(0,0,0,0.25); border:1px solid var(--border); border-radius:12px; height:56px; position:relative; overflow:hidden; margin-bottom:15px; }
+.tide-fill { position:absolute; top:0; bottom:0; inset-inline-start:0; background:linear-gradient(90deg,#0096c7,#00b4d8); transition:width 0.6s ease; }
+.tide-label { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; font-size:17px; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.55); }
+.tide-scale { display:flex; justify-content:space-between; font-size:10px; color:var(--text3); margin-top:6px; margin-bottom:15px; }
+.tide-hours-title { font-size:12px; font-weight:700; color:var(--text2); margin-bottom:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.05); }
+body.light .tide-hours-title { border-top:1px solid rgba(0,0,0,0.05); }
+.tide-hours-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; margin-bottom:10px; }
+.tide-hour-box { background:rgba(0,0,0,0.15); border:1px solid var(--border); border-radius:10px; padding:10px 5px; text-align:center; }
+body.light .tide-hour-box { background:rgba(0,180,216,0.03); }
+.tide-hour-type { font-size:11px; font-weight:700; color:var(--text2); }
+.tide-hour-time { font-size:14px; font-weight:800; color:var(--accent); margin-top:4px; }
+.tide-note { font-size:11px; color:var(--text3); text-align:center; margin-top:12px; }
+
+/* SAFETY GUIDE */
+.safety-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:8px 20px 12px; margin-bottom:25px; }
+.safety-row { display:flex; align-items:center; gap:12px; padding:13px 4px; border-bottom:1px solid var(--border); }
+.safety-row:last-child { border-bottom:none; }
+.safety-dot { width:16px; height:16px; border-radius:50%; flex-shrink:0; }
+.safety-txt b { font-size:14px; color:var(--text); }
+.safety-txt span { display:block; font-size:11px; color:var(--text2); margin-top:2px; }
+
+/* 7-DAY FORECAST - تحديث الشكل بالكامل وتصميم متقدم */
 .forecast-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:25px; }
-.forecast-days { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
-.forecast-day { background:rgba(0,0,0,0.15); border-radius:12px; padding:12px 6px; text-align:center; border:1px solid var(--border); transition:all 0.2s; min-width:75px; }
-.forecast-day:hover { border-color:var(--accent); transform:translateY(-2px); }
-.forecast-day.today { border-color:var(--accent); background:rgba(0,180,216,0.1); }
-.day-name { font-size:11px; color:var(--text2); margin-bottom:6px; font-weight:600; }
-.day-icon { font-size:28px; margin:6px 0; }
-.day-max { font-size:16px; font-weight:900; color:var(--text); }
-.day-min { font-size:12px; color:var(--text3); margin-top:2px; }
-.day-rain { font-size:10px; color:#90e0ef; margin-top:3px; }
-.day-bar { height:3px; background:var(--border); border-radius:2px; margin-top:6px; overflow:hidden; }
-.day-bar-fill { height:100%; background:linear-gradient(90deg,#0096c7,#00b4d8); border-radius:2px; }
+.fc-list { display:flex; flex-direction:column; gap:10px; }
+.fc-row {
+display:grid;
+grid-template-columns: 85px 40px 1fr 110px 140px;
+align-items:center;
+gap:12px;
+padding:12px 14px;
+background: rgba(255, 255, 255, 0.02);
+border: 1px solid rgba(255, 255, 255, 0.03);
+border-radius: 12px;
+transition: transform 0.2s, background 0.2s;
+}
+body.light .fc-row {
+background: rgba(0, 0, 0, 0.01);
+border: 1px solid rgba(0, 0, 0, 0.03);
+}
+.fc-row:hover {
+background: rgba(0, 180, 216, 0.05);
+transform: translateY(-1px);
+}
+.fc-row.today {
+background: linear-gradient(90deg, rgba(0,180,216,0.12), rgba(0,180,216,0.03));
+border-color: rgba(0,180,216,0.3);
+}
+.fc-day { font-weight:700; font-size:14px; color:var(--text); }
+.fc-row.today .fc-day { color: var(--accent); }
+.fc-ico { font-size:24px; text-align:center; display: flex; align-items: center; justify-content: center; }
+.fc-desc { font-size:13px; color:var(--text2); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fc-wind { font-size:12px; color:#90e0ef; display:flex; align-items:center; gap:4px; font-weight: 500; }
+body.light .fc-wind { color: #0077b6; }
+
+/* المدى الحراري الأفقي البصري */
+.fc-temp-container { display:flex; align-items:center; gap:8px; justify-content: flex-end; }
+.fc-temp-num { font-size:14px; font-weight:700; width:28px; text-align: center; }
+.fc-temp-num.mx { color: var(--text); font-weight: 800; }
+.fc-temp-num.mn { color: var(--text3); }
+.fc-temp-bar-wrap { flex:1; height:6px; background: var(--bar-bg); border-radius:3px; position:relative; min-width: 50px; }
+.fc-temp-bar-fill { position:absolute; top:0; bottom:0; background: linear-gradient(90deg, #00b4d8, #ffb703); border-radius:3px; }
+
 .loading { text-align:center; padding:40px; color:var(--text2); font-size:14px; }
 .loading span { color:var(--accent); }
 .port-banner { background:linear-gradient(135deg,#023e8a,#0096c7); border-radius:14px; padding:20px 25px; margin-bottom:25px; display:flex; align-items:center; justify-content:space-between; gap:15px; }
@@ -114,306 +182,675 @@ footer { background:var(--bg2); padding:25px 20px 15px; border-top:1px solid var
 .footer-bottom { text-align:center; padding-top:15px; border-top:1px solid var(--border); font-size:11px; color:var(--text3); }
 .footer-bottom span { color:var(--accent); }
 
+/* الاستجابة للهواتف المحمولة وتعديل أبعاد الجدول المتطور */
+@media(max-width:768px) {
+.fc-row {
+grid-template-columns: 75px 35px 1fr 100px;
+}
+.fc-temp-bar-wrap { display: none; } /* إخفاء الشريط الأفقي فقط على الهواتف لتوفير مساحة والمحافظة على الأرقام */
+.fc-temp-container { width: 70px; }
+}
+
 @media(max-width:600px) {
-  .current-card { grid-template-columns:1fr; }
-  .sea-hours { grid-template-columns:repeat(3,1fr); }
-  .forecast-days { grid-template-columns:repeat(4,1fr); overflow-x:auto; }
-  .port-banner { flex-direction:column; text-align:center; }
-  .footer-grid { grid-template-columns:1fr 1fr; }
+.current-card { grid-template-columns:1fr; }
+.sea-hours { grid-template-columns:repeat(3,1fr); }
+.tide-hours-grid { grid-template-columns:repeat(2, 1fr); }
+.fc-row { grid-template-columns: 75px 35px 1fr 65px; gap: 8px; padding: 12px 8px; }
+.fc-wind { font-size: 11px; justify-content: flex-end; }
+.footer-grid { grid-template-columns:1fr 1fr; }
 }
 </style>
 </head>
 <body>
 
 <header>
-  <a href="https://www.ksarsghir.com" class="logo">
-    <span class="logo-ar" id="logo-ar">القصر الصغير</span>
-    <span class="logo-en">KSAR SGHIR</span>
-  </a>
-  <div class="hright">
-    <div class="lang-sw">
-      <button class="lb on" onclick="setL('ar')">AR</button>
-      <button class="lb" onclick="setL('fr')">FR</button>
-      <button class="lb" onclick="setL('en')">EN</button>
-    </div>
-    <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙</button>
-    <a href="https://www.ksarsghir.com" class="back" id="lback">← الرئيسية</a>
-  </div>
+<a href="https://www.ksarsghir.com" class="logo">
+<span class="logo-ar" id="logo-ar">القصر الصغير</span>
+<span class="logo-en">KSAR SGHIR</span>
+</a>
+<div class="hright">
+<div class="lang-sw">
+<button class="lb on" onclick="setL('ar')">AR</button>
+<button class="lb" onclick="setL('fr')">FR</button>
+<button class="lb" onclick="setL('en')">EN</button>
+</div>
+<button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙</button>
+<a href="https://www.ksarsghir.com" class="back" id="lback">← الرئيسية</a>
+</div>
 </header>
 
 <nav>
-  <a href="https://www.ksarsghir.com" class="nav-link" id="n1">🏠 الرئيسية</a>
-  <a href="https://tourism.ksarsghir.com" class="nav-link" id="n2">🗺️ السياحة</a>
-  <a href="https://gallery.ksarsghir.com" class="nav-link" id="n3">📸 المعرض</a>
-  <a href="https://blog.ksarsghir.com" class="nav-link" id="n4">✍️ المدونة</a>
-  <a href="https://store.ksarsghir.com" class="nav-link" id="n5">🛒 المتجر</a>
-  <a href="https://www.ksarsghir.com/advertise.html" class="nav-link" id="n6">📢 إعلن معنا</a>
-  <a href="https://meteo.ksarsghir.com" class="nav-link active" id="n7">🌤️ الطقس</a>
-  <a href="https://salat.ksarsghir.com" class="nav-link" id="n8">🕌 الصلاة</a>
+<a href="https://www.ksarsghir.com" class="nav-link" id="n1">🏠 الرئيسية</a>
+<a href="https://tourism.ksarsghir.com" class="nav-link" id="n2">🗺️ السياحة</a>
+<a href="https://gallery.ksarsghir.com" class="nav-link" id="n3">📸 المعرض</a>
+<a href="https://blog.ksarsghir.com" class="nav-link" id="n4">✍️ المدونة</a>
+<a href="https://store.ksarsghir.com" class="nav-link" id="n5">🛒 المتجر</a>
+<a href="https://www.ksarsghir.com/advertise.html" class="nav-link" id="n6">📢 إعلن معنا</a>
+<a href="https://meteo.ksarsghir.com" class="nav-link active" id="n7">🌤️ الطقس</a>
+<a href="https://salat.ksarsghir.com" class="nav-link" id="n8">🕌 الصلاة</a>
 </nav>
 
 <div class="hero">
-  <h1 id="hero-title">🌤️ أحوال الطقس وحالة البحر</h1>
-  <p id="hero-desc">القصر الصغير — مضيق جبل طارق، المغرب</p>
-  <div class="update-time" id="update-time">⏳ جاري التحميل...</div>
+<h1 id="hero-title">🌤️ أحوال الطقس وحالة البحر</h1>
+<p id="hero-desc">القصر الصغير — مضيق جبل طارق، المغرب</p>
+<div class="update-time" id="update-time">⏳ جاري التحميل...</div>
 </div>
 
 <div class="container">
 
-  <div id="current-weather" class="loading"><span>⏳ جاري تحميل بيانات الطقس...</span></div>
+<div id="current-weather" class="loading"><span>⏳ جاري تحميل بيانات الطقس...</span></div>
 
-  <div class="port-banner">
-    <div>
-      <h3 id="port-title">⛴️ رحلات ميناء طنجة المتوسط</h3>
-      <p id="port-desc">مواعيد العبور الرسمية — تحديث يومي</p>
-    </div>
-    <a href="https://www.tangermed-passagers.com/fr/horaires-bateau/departs-de-tanger-med" target="_blank" class="port-btn" id="port-btn">عرض المواعيد ←</a>
-  </div>
+<div class="port-banner">
+<div>
+<h3 id="port-title">⛴️ رحلات ميناء طنجة المتوسط</h3>
+<p id="port-desc">مواعيد العبور الرسمية — تحديث يومي</p>
+</div>
+<a href="https://www.tangermed-passagers.com/fr/horaires-bateau/departs-de-tanger-med" target="_blank" rel="noopener" class="port-btn" id="port-btn">عرض المواعيد ←</a>
+</div>
 
-  <div class="sea-card">
-    <div class="section-title" id="sea-title">🌊 حالة البحر — 24 ساعة</div>
-    <div id="sea-status-box" class="loading"><span>⏳ جاري التحميل...</span></div>
-    <div id="sea-hours-grid"></div>
-  </div>
+<div class="sea-card">
+<div class="section-title" id="sea-title">🌊 حالة البحر — 24 ساعة</div>
+<div id="sea-status-box" class="loading"><span>⏳ جاري التحميل...</span></div>
+<div id="sea-summary"></div>
+<div id="sea-hours-grid"></div>
+<div class="sea-note" id="sea-note"></div>
+</div>
 
-  <div class="forecast-card">
-    <div class="section-title" id="forecast-title">📅 النشرة الجوية — 7 أيام</div>
-    <div id="forecast-grid" class="loading"><span>⏳ جاري التحميل...</span></div>
-  </div>
+<div class="tide-card">
+<div class="section-title" id="tide-title">🌗 المد والجزر — تقريبي</div>
+<div class="tide-state" id="tide-state">—</div>
+<div class="tide-bar-wrap">
+<div class="tide-fill" id="tide-fill" style="width:50%"></div>
+<div class="tide-label" id="tide-label">—</div>
+</div>
+<div class="tide-scale"><span id="tide-low">جزر</span><span id="tide-high">مد</span></div>
+
+<div class="tide-hours-title" id="tide-hours-title">⏰ مواعيد المد والجزر المتوقعة اليوم:</div>
+<div class="tide-hours-grid" id="tide-hours-grid"></div>
+
+<div class="tide-note" id="tide-note"></div>
+</div>
+
+<div class="safety-card">
+<div class="section-title" id="safety-title" style="margin-top:8px;">🛟 دليل السلامة البحرية</div>
+<div id="safety-list"></div>
+</div>
+
+<div class="forecast-card">
+<div class="section-title" id="forecast-title" style="margin:8px 0 12px;">📅 النشرة الجوية — 7 أيام</div>
+<div id="forecast-grid" class="loading"><span>⏳ جاري التحميل...</span></div>
+</div>
 
 </div>
 
 <footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h4 id="fc1">🗺️ السياحة</h4>
-      <a href="https://tourism.ksarsghir.com/plage.html" id="fl1">شاطئ القصر الصغير</a>
-      <a href="https://tourism.ksarsghir.com/belyounech.html" id="fl2">قرية بليونش</a>
-      <a href="https://tourism.ksarsghir.com/port.html" id="fl3">ميناء الصيد</a>
-      <a href="https://tourism.ksarsghir.com/tangermed.html" id="fl4">طنجة المتوسط</a>
-    </div>
-    <div class="footer-col">
-      <h4 id="fc2">🔗 المواقع</h4>
-      <a href="https://www.ksarsghir.com" id="fl5">الرئيسية</a>
-      <a href="https://gallery.ksarsghir.com" id="fl6">معرض الصور</a>
-      <a href="https://blog.ksarsghir.com" id="fl7">المدونة</a>
-      <a href="https://salat.ksarsghir.com" id="fl8">مواقيت الصلاة</a>
-    </div>
-    <div class="footer-col">
-      <h4 id="fc3">📄 معلومات</h4>
-      <a href="https://www.ksarsghir.com/about.html" id="fl9">من أنا</a>
-      <a href="https://www.ksarsghir.com/advertise.html" id="fl10">إعلن معنا</a>
-      <a href="https://www.ksarsghir.com/privacy.html" id="fl11">سياسة الخصوصية</a>
-      <a href="https://wa.me/212708053745" id="fl12">تواصل معنا</a>
-    </div>
-  </div>
-  <div class="footer-bottom">© 2026 <span>Ksar Sghir</span> • Bilal El Hichou</div>
+<div class="footer-grid">
+<div class="footer-col">
+<h4 id="fc1">🗺️ السياحة</h4>
+<a href="https://tourism.ksarsghir.com/plage.html" id="fl1">شاطئ القصر الصغير</a>
+<a href="https://tourism.ksarsghir.com/belyounech.html" id="fl2">قرية بليونش</a>
+<a href="https://tourism.ksarsghir.com/port.html" id="fl3">ميناء الصيد</a>
+<a href="https://tourism.ksarsghir.com/tangermed.html" id="fl4">طنجة المتوسط</a>
+</div>
+<div class="footer-col">
+<h4 id="fc2">🔗 المواقع</h4>
+<a href="https://www.ksarsghir.com" id="fl5">الرئيسية</a>
+<a href="https://gallery.ksarsghir.com" id="fl6">معرض الصور</a>
+<a href="https://blog.ksarsghir.com" id="fl7">المدونة</a>
+<a href="https://salat.ksarsghir.com" id="fl8">مواقيت الصلاة</a>
+</div>
+<div class="footer-col">
+<h4 id="fc3">📄 معلومات</h4>
+<a href="https://www.ksarsghir.com/about.html" id="fl9">من أنا</a>
+<a href="https://www.ksarsghir.com/advertise.html" id="fl10">إعلن معنا</a>
+<a href="https://www.ksarsghir.com/privacy.html" id="fl11">سياسة الخصوصية</a>
+<a href="https://wa.me/212708053745" id="fl12">تواصل معنا</a>
+</div>
+</div>
+<div class="footer-bottom">© 2026 <span>Ksar Sghir</span> • Bilal El Hichou • <span id="src">المصدر: Open-Meteo</span></div>
 </footer>
 
 <script>
 // ===== LANG =====
 var L = {
-  ar: { dir:"rtl", "logo-ar":"القصر الصغير", lback:"← الرئيسية",
-    n1:"🏠 الرئيسية", n2:"🗺️ السياحة", n3:"📸 المعرض", n4:"✍️ المدونة",
-    n5:"🛒 المتجر", n6:"📢 إعلن معنا", n7:"🌤️ الطقس", n8:"🕌 الصلاة",
-    "hero-title":"🌤️ أحوال الطقس وحالة البحر",
-    "hero-desc":"القصر الصغير — مضيق جبل طارق، المغرب",
-    "port-title":"⛴️ رحلات ميناء طنجة المتوسط",
-    "port-desc":"مواعيد العبور الرسمية — تحديث يومي",
-    "port-btn":"عرض المواعيد ←",
-    "sea-title":"🌊 حالة البحر — 24 ساعة",
-    "forecast-title":"📅 النشرة الجوية — 7 أيام",
-    fc1:"🗺️ السياحة", fc2:"🔗 المواقع", fc3:"📄 معلومات",
-    fl1:"شاطئ القصر الصغير", fl2:"قرية بليونش", fl3:"ميناء الصيد", fl4:"طنجة المتوسط",
-    fl5:"الرئيسية", fl6:"معرض الصور", fl7:"المدونة", fl8:"مواقيت الصلاة",
-    fl9:"من أنا", fl10:"إعلن معنا", fl11:"سياسة الخصوصية", fl12:"تواصل معنا"
-  },
-  fr: { dir:"ltr", "logo-ar":"Ksar Sghir", lback:"← Accueil",
-    n1:"🏠 Accueil", n2:"🗺️ Tourisme", n3:"📸 Galerie", n4:"✍️ Blog",
-    n5:"🛒 Boutique", n6:"📢 Publicité", n7:"🌤️ Météo", n8:"🕌 Prière",
-    "hero-title":"🌤️ Météo et état de la mer",
-    "hero-desc":"Ksar Sghir — Détroit de Gibraltar, Maroc",
-    "port-title":"⛴️ Traversées port Tanger Med",
-    "port-desc":"Horaires officiels — mise à jour quotidienne",
-    "port-btn":"Voir les horaires ←",
-    "sea-title":"🌊 État de la mer — 24 heures",
-    "forecast-title":"📅 Bulletin météo — 7 jours",
-    fc1:"🗺️ Tourisme", fc2:"🔗 Sites", fc3:"📄 Informations",
-    fl1:"Plage Ksar Sghir", fl2:"Belyounech", fl3:"Port de pêche", fl4:"Tanger Med",
-    fl5:"Accueil", fl6:"Galerie photos", fl7:"Blog", fl8:"Horaires prière",
-    fl9:"À propos", fl10:"Publicité", fl11:"Confidentialité", fl12:"Contactez-nous"
-  },
-  en: { dir:"ltr", "logo-ar":"Ksar Sghir", lback:"← Home",
-    n1:"🏠 Home", n2:"🗺️ Tourism", n3:"📸 Gallery", n4:"✍️ Blog",
-    n5:"🛒 Store", n6:"📢 Advertise", n7:"🌤️ Weather", n8:"🕌 Prayer",
-    "hero-title":"🌤️ Weather & Sea Conditions",
-    "hero-desc":"Ksar Sghir — Strait of Gibraltar, Morocco",
-    "port-title":"⛴️ Tanger Med Port Crossings",
-    "port-desc":"Official schedules — daily updates",
-    "port-btn":"View schedules ←",
-    "sea-title":"🌊 Sea Conditions — 24 hours",
-    "forecast-title":"📅 Weather Forecast — 7 days",
-    fc1:"🗺️ Tourism", fc2:"🔗 Sites", fc3:"📄 Information",
-    fl1:"Ksar Sghir Beach", fl2:"Belyounech", fl3:"Fishing Port", fl4:"Tanger Med",
-    fl5:"Home", fl6:"Photo Gallery", fl7:"Blog", fl8:"Prayer Times",
-    fl9:"About", fl10:"Advertise", fl11:"Privacy Policy", fl12:"Contact us"
-  }
+ar: { dir:"rtl", "logo-ar":"القصر الصغير", lback:"← الرئيسية",
+n1:"🏠 الرئيسية", n2:"🗺️ السياحة", n3:"📸 المعرض", n4:"✍️ المدونة",
+n5:"🛒 المتجر", n6:"📢 إعلن معنا", n7:"🌤️ الطقس", n8:"🕌 الصلاة",
+"hero-title":"🌤️ أحوال الطقس وحالة البحر",
+"hero-desc":"القصر الصغير — مضيق جبل طارق، المغرب",
+"port-title":"⛴️ رحلات ميناء طنجة المتوسط",
+"port-desc":"مواعيد العبور الرسمية — تحديث يومي",
+"port-btn":"عرض المواعيد ←",
+"sea-title":"🌊 حالة البحر — 24 ساعة",
+"forecast-title":"📅 النشرة الجوية — 7 أيام",
+"tide-hours-title":"⏰ مواعيد المد والجزر المتوقعة اليوم:",
+src:"المصدر: Open-Meteo",
+fc1:"🗺️ السياحة", fc2:"🔗 المواقع", fc3:"📄 معلومات",
+fl1:"شاطئ القصر الصغير", fl2:"قرية بليونش", fl3:"ميناء الصيد", fl4:"طنجة المتوسط",
+fl5:"الرئيسية", fl6:"معرض الصور", fl7:"المدونة", fl8:"مواقيت الصلاة",
+fl9:"من أنا", fl10:"إعلن معنا", fl11:"سياسة الخصوصية", fl12:"تواصل معنا"
+},
+fr: { dir:"ltr", "logo-ar":"Ksar Sghir", lback:"← Accueil",
+n1:"🏠 Accueil", n2:"🗺️ Tourisme", n3:"📸 Galerie", n4:"✍️ Blog",
+n5:"🛒 Boutique", n6:"📢 Publicité", n7:"🌤️ Météo", n8:"🕌 Prière",
+"hero-title":"🌤️ Météo et état de the mer",
+"hero-desc":"Ksar Sghir — Détroit de Gibraltar, Maroc",
+"port-title":"⛴️ Traversées port Tanger Med",
+"port-desc":"Horaires officiels — mise à jour quotidienne",
+"port-btn":"Voir les horaires ←",
+"sea-title":"🌊 État de la mer — 24 heures",
+"forecast-title":"📅 Bulletin météo — 7 jours",
+"tide-hours-title":"⏰ Horaires des marées aujourd'hui:",
+src:"Source : Open-Meteo",
+fc1:"🗺️ Tourisme", fc2:"🔗 Sites", fc3:"📄 Informations",
+fl1:"Plage Ksar Sghir", fl2:"Belyounech", fl3:"Port de pêche", fl4:"Tanger Med",
+fl5:"Accueil", fl6:"Galerie photos", fl7:"Blog", fl8:"Horaires prière",
+fl9:"À propos", fl10:"Publicité", fl11:"Confidentialité", fl12:"Contactez-nous"
+},
+en: { dir:"ltr", "logo-ar":"Ksar Sghir", lback:"← Home",
+n1:"🏠 Home", n2:"🗺️ Tourism", n3:"📸 Gallery", n4:"✍️ Blog",
+n5:"🛒 Store", n6:"📢 Advertise", n7:"🌤️ Weather", n8:"🕌 Prayer",
+"hero-title":"🌤️ Weather & Sea Conditions",
+"hero-desc":"Ksar Sghir — Strait of Gibraltar, Morocco",
+"port-title":"⛴️ Tanger Med Port Crossings",
+"port-desc":"Official schedules — daily updates",
+"port-btn":"View schedules ←",
+"sea-title":"🌊 Sea Conditions — 24 hours",
+"forecast-title":"📅 Weather Forecast — 7 days",
+"tide-hours-title":"⏰ Expected Tide Times Today:",
+src:"Source: Open-Meteo",
+fc1:"🗺️ Tourism", fc2:"🔗 Sites", fc3:"📄 Information",
+fl1:"Ksar Sghir Beach", fl2:"Belyounech", fl3:"Fishing Port", fl4:"Tanger Med",
+fl5:"Home", fl6:"Photo Gallery", fl7:"Blog", fl8:"Prayer Times",
+fl9:"About", fl10:"Advertise", fl11:"Privacy Policy", fl12:"Contact us"
+}
 };
 
+// ===== I18N STRINGS FOR DATA =====
+var STR = {
+ar: {
+loc:"📍 القصر الصغير، المغرب",
+feels:"الإحساس", humidity:"الرطوبة", wind:"الرياح", rain:"الأمطار", pressure:"الضغط hPa", windDir:"اتجاه الريح",
+sunrise:"الشروق", sunset:"الغروب", kmh:"كم/س",
+waveH:"ارتفاع الموج", waveDir:"اتجاه الموج", windSp:"سرعة الرياح",
+seaNote:"⚠️ بيانات البحر تقريبية — للسلامة راجع المصادر الرسمية",
+today:"اليوم", tomorrow:"غداً",
+updated:"🔄 آخر تحديث",
+errW:"⚠️ تعذّر تحميل بيانات الطقس — أعد المحاولة لاحقاً",
+errF:"⚠️ تعذّر تحميل النشرة الجوية",
+sea:{ calm:["هادئ","مناسب للسباحة والصيد"], moderate:["متوسط","للقوارب الكبيرة فقط"], rough:["مضطرب","خطر على القوارب الصغيرة"], danger:["خطر","تجنّب البحر تماماً"] }
+},
+fr: {
+loc:"📍 Ksar Sghir, Maroc",
+feels:"Ressenti", humidity:"Humidité", wind:"Vent", rain:"Pluie", pressure:"Pression hPa", windDir:"Direction",
+sunrise:"Lever", sunset:"Coucher", kmh:"km/h",
+waveH:"Hauteur vagues", waveDir:"Dir. vagues", windSp:"Vitesse vent",
+seaNote:"⚠️ Données mer approximatives — consultez les sources officielles",
+today:"Auj.", tomorrow:"Demain",
+updated:"🔄 Mis à jour",
+errW:"⚠️ Impossible de charger la météo — réessayez plus tard",
+errF:"⚠️ Impossible de charger le bulletin",
+sea:{ calm:["Calme","Idéal nager et pêcher"], moderate:["Modérée","Grandes embarcations seulement"], rough:["Agitée","Danger pour petits bateaux"], danger:["Danger","Évitez la mer"] }
+},
+en: {
+loc:"📍 Ksar Sghir, Morocco",
+feels:"Feels like", humidity:"Humidity", wind:"Wind", rain:"Rain", pressure:"Pressure hPa", windDir:"Wind dir.",
+sunrise:"Sunrise", sunset:"Sunset", kmh:"km/h",
+waveH:"Wave height", waveDir:"Wave dir.", windSp:"Wind speed",
+seaNote:"⚠️ Sea data is approximate — check official sources for safety",
+today:"Today", tomorrow:"Tomorrow",
+updated:"🔄 Updated",
+errW:"⚠️ Could not load weather — try again later",
+errF:"⚠️ Could not load forecast",
+sea:{ calm:["Calm","Good for swimming & fishing"], moderate:["Moderate","Large boats only"], rough:["Rough","Danger for small boats"], danger:["Danger","Avoid the sea"] }
+}
+};
+
+var TIDE_STR = {
+ar: { title:"🌗 المد والجزر — تقريبي", low:"جزر", high:"مد",
+high_full:"مدّ مرتفع", low_full:"جزر منخفض", rising:"المدّ صاعد ↑", falling:"الجزر هابط ↓",
+note:"⚠️ تقدير فلكي تقريبي لساعات المدّ — ليس بديلاً عن جداول المد الرسمية" },
+fr: { title:"🌗 Marées — approximatif", low:"Basse", high:"Haute",
+high_full:"Marée haute", low_full:"Marée basse", rising:"Marée montante ↑", falling:"Marée descendante ↓",
+note:"⚠️ Estimation astronomique approximative — ne remplace pas les tables officielles" },
+en: { title:"🌗 Tides — approximate", low:"Low", high:"High",
+high_full:"High tide", low_full:"Low tide", rising:"Tide rising ↑", falling:"Tide falling ↓",
+note:"⚠️ Approximate astronomical estimate — not a substitute for official tide tables" }
+};
+
+var SAFETY = {
+ar: { title:"🛟 دليل السلامة البحرية", rows:[
+["#2ecc71","هادئ (0–1.25م)","مناسب للسباحة والصيد"],
+["#f1c40f","متوسط (1.25–2.5م)","للقوارب الكبيرة فقط"],
+["#e67e22","مضطرب (2.5–4م)","خطر على القوارب الصغيرة"],
+["#e74c3c","خطر (+4م)","تجنّب البحر تماماً"]
+]},
+fr: { title:"🛟 Guide de sécurité en mer", rows:[
+["#2ecc71","Calme (0–1,25m)","Idéal pour nager et pêcher"],
+["#f1c40f","Modérée (1,25–2,5m)","Grandes embarcations seulement"],
+["#e67e22","Agitée (2,5–4m)","Danger pour petits bateaux"],
+["#e74c3c","Danger (+4m)","Évitez la mer"]
+]},
+en: { title:"🛟 Marine safety guide", rows:[
+["#2ecc71","Calm (0–1.25m)","Good for swimming & fishing"],
+["#f1c40f","Moderate (1.25–2.5m)","Large boats only"],
+["#e67e22","Rough (2.5–4m)","Danger for small boats"],
+["#e74c3c","Danger (+4m)","Avoid the sea"]
+]}
+};
+
+var DAYS = {
+ar:["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+fr:["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"],
+en:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+};
+var COMPASS = {
+ar:["شمال","شمال شرق","شرق","جنوب شرق","جنوب","جنوب غرب","غرب","شمال غرب"],
+fr:["N","NE","E","SE","S","SO","O","NO"],
+en:["N","NE","E","SE","S","SW","W","NW"]
+};
+
+function curLang() { return document.documentElement.getAttribute("lang") || "ar"; }
+
 function setL(lang) {
-  var t = L[lang];
-  document.documentElement.setAttribute("dir", t.dir);
-  document.body.setAttribute("dir", t.dir);
-  Object.keys(t).forEach(function(id) {
-    if (id === "dir") return;
-    var el = document.getElementById(id);
-    if (el) el.innerHTML = t[id];
-  });
-  document.querySelectorAll(".lb").forEach(function(b) {
-    b.classList.remove("on");
-    if (b.getAttribute("onclick") === "setL('"+lang+"')") b.classList.add("on");
-  });
-  try { localStorage.setItem("met_lang", lang); } catch(e) {}
+var t = L[lang];
+document.documentElement.setAttribute("lang", lang);
+document.documentElement.setAttribute("dir", t.dir);
+document.body.setAttribute("dir", t.dir);
+Object.keys(t).forEach(function(id) {
+if (id === "dir") return;
+var el = document.getElementById(id);
+if (el) el.innerHTML = t[id];
+});
+document.querySelectorAll(".lb").forEach(function(b) {
+b.classList.remove("on");
+if (b.getAttribute("onclick") === "setL('"+lang+"')") b.classList.add("on");
+});
+try { localStorage.setItem("met_lang", lang); } catch(e) {}
+renderAll();
 }
 
 function toggleTheme() {
-  var isLight = document.body.classList.toggle("light");
-  document.getElementById("theme-btn").textContent = isLight ? "🌙" : "☀️";
-  try { localStorage.setItem("met_theme", isLight ? "light" : "dark"); } catch(e) {}
+var isLight = document.body.classList.toggle("light");
+document.getElementById("theme-btn").textContent = isLight ? "🌙" : "☀️";
+try { localStorage.setItem("met_theme", isLight ? "light" : "dark"); } catch(e){}
 }
 
-// ===== WEATHER =====
+// ===== CONFIG =====
 var LAT = 35.6897, LON = -5.5597;
-var API_KEY = "bd5e378503939ddaee76f12ad7a97608";
-var DAYS_AR = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
-var DAYS_FR = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
-var DAYS_EN = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var MLAT = 35.8500, MLON = -5.5300;
+var M2 = 12.4206 * 3600000;
 
-function getWeatherIcon(id, isDay) {
-  if (id >= 200 && id < 300) return "⛈️";
-  if (id >= 300 && id < 400) return "🌦️";
-  if (id >= 500 && id < 600) return "🌧️";
-  if (id >= 600 && id < 700) return "❄️";
-  if (id >= 700 && id < 800) return "🌫️";
-  if (id === 800) return isDay ? "☀️" : "🌙";
-  if (id === 801) return "🌤️";
-  if (id === 802) return "⛅";
-  if (id >= 803) return "☁️";
-  return "🌡️";
+function wmoIcon(code, isDay) {
+if (code === 0) return isDay ? "☀️" : "🌙";
+if (code === 1) return isDay ? "🌤️" : "🌙";
+if (code === 2) return "⛅";
+if (code === 3) return "☁️";
+if (code === 45 || code === 48) return "🌫️";
+if (code >= 51 && code <= 57) return "🌦️";
+if (code >= 61 && code <= 67) return "🌧️";
+if (code >= 71 && code <= 77) return "❄️";
+if (code >= 80 && code <= 82) return "🌦️";
+if (code >= 85 && code <= 86) return "❄️";
+if (code >= 95) return "⛈️";
+return "🌡️";
+}
+function wmoDesc(code, lang) {
+var d = {
+ar:{c:"صافٍ",pc:"غائم جزئياً",cl:"غائم",fg:"ضباب",dz:"رذاذ",rn:"مطر",sh:"زخات مطر",sn:"ثلوج",st:"عواصف رعدية"},
+fr:{c:"Ciel clair",pc:"Partiellement nuageux",cl:"Nuageux",fg:"Brouillard",dz:"Bruine",rn:"Pluie",sh:"Averses",sn:"Neige",st:"Orages"},
+en:{c:"Clear sky",pc:"Partly cloudy",cl:"Cloudy",fg:"Fog",dz:"Drizzle",rn:"Rain",sh:"Showers",sn:"Snow",st:"Thunderstorm"}
+};
+var t = d[lang] || d.ar;
+if (code === 0) return t.c;
+if (code === 1 || code === 2) return t.pc;
+if (code === 3) return t.cl;
+if (code === 45 || code === 48) return t.fg;
+if (code >= 51 && code <= 57) return t.dz;
+if (code >= 61 && code <= 67) return t.rn;
+if (code >= 80 && code <= 82) return t.sh;
+if (code >= 71 && code <= 86) return t.sn;
+if (code >= 95) return t.st;
+return t.cl;
+}
+function compass(deg, lang) {
+if (deg == null || isNaN(deg)) return "—";
+var i = Math.round(deg / 45) % 8;
+return (COMPASS[lang] || COMPASS.ar)[i];
+}
+function fmtTime(iso) {
+if (!iso) return "—";
+var d = new Date(iso);
+return d.getHours().toString().padStart(2,"0") + ":" + d.getMinutes().toString().padStart(2,"0");
 }
 
-function getSeaStatus(windSpeed) {
-  var lang = document.documentElement.getAttribute("lang") || "ar";
-  if (windSpeed < 5) return { cls:"calm", text: lang==="fr"?"Mer calme ✅":lang==="en"?"Calm sea ✅":"هادئ ✅", icon:"😊", desc: lang==="fr"?"Idéal pour nager et pêcher":lang==="en"?"Perfect for swimming and fishing":"مثالي للسباحة والصيد" };
-  if (windSpeed < 10) return { cls:"moderate", text: lang==="fr"?"Mer modérée ⚠️":lang==="en"?"Moderate sea ⚠️":"متوسط ⚠️", icon:"😐", desc: lang==="fr"?"Prudence loin de la côte":lang==="en"?"Be careful away from shore":"توخ الحيطة عند الابتعاد عن الشاطئ" };
-  return { cls:"rough", text: lang==="fr"?"Mer agitée ❌":lang==="en"?"Rough sea ❌":"متلاطم ❌", icon:"⚠️", desc: lang==="fr"?"Déconseillé pour nager":lang==="en"?"Not suitable for swimming":"غير مناسب للسباحة أو القوارب الصغيرة" };
+function seaStatus(waveH, lang) {
+var s = STR[lang].sea;
+if (waveH < 1.25) return { cls:"calm", icon:"🟢", t:s.calm[0], d:s.calm[1] };
+if (waveH < 2.5) return { cls:"moderate", icon:"🟡", t:s.moderate[0], d:s.moderate[1] };
+if (waveH < 4) return { cls:"rough", icon:"🟠", t:s.rough[0], d:s.rough[1] };
+return { cls:"danger", icon:"🔴", t:s.danger[0], d:s.danger[1] };
 }
 
-function loadWeather() {
-  fetch("https://api.openweathermap.org/data/2.5/weather?lat="+LAT+"&lon="+LON+"&appid="+API_KEY+"&units=metric&lang=ar")
-    .then(function(r){ return r.json(); })
-    .then(function(d) {
-      var temp = Math.round(d.main.temp);
-      var feels = Math.round(d.main.feels_like);
-      var humidity = d.main.humidity;
-      var wind = Math.round(d.wind.speed * 3.6);
-      var windMs = d.wind.speed;
-      var pressure = d.main.pressure;
-      var desc = d.weather[0].description;
-      var id = d.weather[0].id;
-      var isDay = d.dt > d.sys.sunrise && d.dt < d.sys.sunset;
-      var icon = getWeatherIcon(id, isDay);
-      var sea = getSeaStatus(windMs);
-      var now = new Date();
-
-      document.getElementById("update-time").textContent = "🔄 " + now.toLocaleTimeString("ar");
-
-      document.getElementById("current-weather").innerHTML =
-        "<div class=\"current-card\">" +
-          "<div class=\"current-main\">" +
-            "<div class=\"current-icon\">"+icon+"</div>" +
-            "<div>" +
-              "<div class=\"current-temp\">"+temp+"<span>°C</span></div>" +
-              "<div class=\"current-desc\">"+desc+"</div>" +
-              "<div class=\"current-location\">📍 القصر الصغير، المغرب</div>" +
-            "</div>" +
-          "</div>" +
-          "<div class=\"current-details\">" +
-            "<div class=\"detail-item\"><div class=\"detail-val\">"+feels+"°</div><div class=\"detail-label\" id=\"dl1\">يُحسّ بـ</div></div>" +
-            "<div class=\"detail-item\"><div class=\"detail-val\">"+humidity+"%</div><div class=\"detail-label\" id=\"dl2\">رطوبة</div></div>" +
-            "<div class=\"detail-item\"><div class=\"detail-val\">"+wind+" كم</div><div class=\"detail-label\" id=\"dl3\">الرياح</div></div>" +
-            "<div class=\"detail-item\"><div class=\"detail-val\">"+pressure+"</div><div class=\"detail-label\" id=\"dl4\">الضغط hPa</div></div>" +
-          "</div>" +
-        "</div>";
-
-      document.getElementById("sea-status-box").innerHTML =
-        "<div class=\"sea-status "+sea.cls+"\">" +
-          "<div class=\"sea-icon\">"+sea.icon+"</div>" +
-          "<div class=\"sea-text\"><h3>"+sea.text+"</h3><p>"+sea.desc+"</p></div>" +
-        "</div>";
-
-      var hoursHtml = "<div class=\"sea-hours\">";
-      for (var h = 0; h < 6; h++) {
-        var hour = new Date(now.getTime() + h * 4 * 3600000);
-        var hStr = hour.getHours().toString().padStart(2,"0") + ":00";
-        var hw = Math.max(0, windMs + (Math.random()-0.5)*2);
-        var waveH = (hw * 0.1 + Math.random() * 0.3).toFixed(1);
-        hoursHtml += "<div class=\"sea-hour\"><div class=\"time\">"+hStr+"</div><div class=\"wave\">🌊</div><div class=\"height\">"+waveH+"م</div><div class=\"wind\">"+Math.round(hw*3.6)+" كم/س</div></div>";
-      }
-      hoursHtml += "</div>";
-      document.getElementById("sea-hours-grid").innerHTML = hoursHtml;
-    }).catch(function() {
-      document.getElementById("current-weather").innerHTML = "<div class=\"loading\">⚠️ تعذر تحميل بيانات الطقس</div>";
-    });
+function estWave(windKmh) {
+if (windKmh == null || isNaN(windKmh)) return 0;
+var ms = windKmh / 3.6;
+var h = 0.015 * ms * ms;
+return Math.round(h * 10) / 10;
 }
 
-function loadForecast() {
-  fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+LAT+"&lon="+LON+"&appid="+API_KEY+"&units=metric&lang=ar&cnt=56")
-    .then(function(r){ return r.json(); })
-    .then(function(d) {
-      var days = {};
-      d.list.forEach(function(item) {
-        var date = item.dt_txt.split(" ")[0];
-        if (!days[date]) days[date] = { max:-99, min:99, icons:[], rain:0 };
-        days[date].max = Math.max(days[date].max, item.main.temp_max);
-        days[date].min = Math.min(days[date].min, item.main.temp_min);
-        days[date].icons.push(item.weather[0].id);
-        if (item.rain) days[date].rain += item.rain["3h"] || 0;
-      });
-      var today = new Date().toISOString().split("T")[0];
-      var html = "<div class=\"forecast-days\">";
-      Object.keys(days).slice(0, 7).forEach(function(date) {
-        var day = days[date];
-        var d = new Date(date);
-        var dayName = date === today ? "اليوم" : DAYS_AR[d.getDay()];
-        var isToday = date === today;
-        var icon = getWeatherIcon(day.icons[Math.floor(day.icons.length/2)], true);
-        var barW = Math.round((day.max - 10) / 25 * 100);
-        html += "<div class=\"forecast-day"+(isToday?" today":"")+"\">" +
-          "<div class=\"day-name\">"+dayName+"</div>" +
-          "<div class=\"day-icon\">"+icon+"</div>" +
-          "<div class=\"day-max\">"+Math.round(day.max)+"°</div>" +
-          "<div class=\"day-min\">"+Math.round(day.min)+"°</div>" +
-          (day.rain > 0 ? "<div class=\"day-rain\">💧"+day.rain.toFixed(1)+"</div>" : "<div class=\"day-rain\"> </div>") +
-          "<div class=\"day-bar\"><div class=\"day-bar-fill\" style=\"width:"+Math.max(10,Math.min(100,barW))+"%\"></div></div>" +
-        "</div>";
-      });
-      html += "</div>";
-      document.getElementById("forecast-grid").innerHTML = html;
-    }).catch(function() {
-      document.getElementById("forecast-grid").innerHTML = "<div class=\"loading\">⚠️ تعذر تحميل النشرة الجوية</div>";
-    });
+function tideNow() {
+var lonCorr = (LON / 360) * M2;
+var t = Date.now() + lonCorr;
+var phase = ((t % M2) + M2) % M2 / M2;
+var level = Math.sin(2 * Math.PI * phase);
+var tPrev = (((t - 1800000) % M2) + M2) % M2 / M2;
+var rising = level >= Math.sin(2 * Math.PI * tPrev);
+return { level: level, rising: rising, pct: Math.round((level + 1) / 2 * 100) };
+}
+
+function getTideHoursForToday() {
+var lonCorr = (LON / 360) * M2;
+var baseStart = new Date();
+baseStart.setHours(0,0,0,0);
+var startMs = baseStart.getTime() + lonCorr;
+
+var events = [];
+for (var min = 0; min <= 1440; min += 1) {
+var checkTimeMs = startMs + (min * 60000);
+var phase = ((checkTimeMs % M2) + M2) % M2 / M2;
+var level = Math.sin(2 * Math.PI * phase);
+
+var prevTimeMs = checkTimeMs - 60000;
+var prevPhase = ((prevTimeMs % M2) + M2) % M2 / M2;
+var prevLevel = Math.sin(2 * Math.PI * prevPhase);
+
+var nextTimeMs = checkTimeMs + 60000;
+var nextPhase = ((nextTimeMs % M2) + M2) % M2 / M2;
+var nextLevel = Math.sin(2 * Math.PI * nextPhase);
+
+if (level > prevLevel && level > nextLevel) {
+var evDate = new Date(baseStart.getTime() + (min * 60000));
+events.push({ type: 'high', time: evDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false}) });
+}
+if (level < prevLevel && level < nextLevel) {
+var evDate = new Date(baseStart.getTime() + (min * 60000));
+events.push({ type: 'low', time: evDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false}) });
+}
+}
+return events;
+}
+
+// ===== STATE =====
+var state = { wx:null, marine:null };
+
+// ===== FETCH =====
+function loadData() {
+var wxUrl = "https://api.open-meteo.com/v1/forecast?latitude="+LAT+"&longitude="+LON+
+"&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,surface_pressure,precipitation,is_day"+
+"&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,wind_direction_10m_dominant,sunrise,sunset"+
+"&hourly=wind_speed_10m"+
+"&timezone=auto&forecast_days=7";
+
+var seaUrl = "https://marine-api.open-meteo.com/v1/marine?latitude="+MLAT+"&longitude="+MLON+
+"&current=wave_height,wave_direction"+
+"&hourly=wave_height"+
+"&cell_selection=sea"+
+"&timezone=auto&forecast_days=2";
+
+fetch(wxUrl).then(function(r){ return r.json(); }).then(function(d){
+if (d && d.current) {
+state.wx = d;
+try { localStorage.setItem("met_wx", JSON.stringify(d)); } catch(e){}
+}
+renderAll();
+}).catch(function(){
+if (!state.wx) tryCache();
+renderAll();
+});
+
+fetch(seaUrl).then(function(r){ return r.json(); }).then(function(d){
+if (d && (d.current || d.hourly)) {
+state.marine = d;
+try { localStorage.setItem("met_sea", JSON.stringify(d)); } catch(e){}
+}
+renderAll();
+}).catch(function(){ renderAll(); });
+}
+
+function tryCache() {
+try {
+var w = localStorage.getItem("met_wx"); if (w) state.wx = JSON.parse(w);
+var s = localStorage.getItem("met_sea"); if (s) state.marine = JSON.parse(s);
+} catch(e){}
+}
+
+// ===== RENDER =====
+function renderAll() {
+renderWeather();
+renderSea();
+renderTide();
+renderSafety();
+renderForecast();
+}
+
+function renderWeather() {
+var box = document.getElementById("current-weather");
+var lang = curLang(), S = STR[lang];
+if (!state.wx || !state.wx.current) {
+box.className = "loading";
+box.innerHTML = "<span>"+S.errW+"</span>";
+return;
+}
+var c = state.wx.current, dy = state.wx.daily;
+var temp = Math.round(c.temperature_2m);
+var feels = Math.round(c.apparent_temperature);
+var hum = Math.round(c.relative_humidity_2m);
+var wind = Math.round(c.wind_speed_10m);
+var wdir = compass(c.wind_direction_10m, lang);
+var press = Math.round(c.surface_pressure);
+var rain = (c.precipitation || 0).toFixed(1);
+var icon = wmoIcon(c.weather_code, c.is_day === 1);
+var desc = wmoDesc(c.weather_code, lang);
+var sunrise = dy && dy.sunrise ? fmtTime(dy.sunrise[0]) : "—";
+var sunset = dy && dy.sunset ? fmtTime(dy.sunset[0]) : "—";
+
+document.getElementById("update-time").textContent =
+S.updated + " " + new Date().toLocaleTimeString(lang, {hour:"2-digit",minute:"2-digit"});
+
+box.className = "";
+box.innerHTML =
+'<div class="current-card">' +
+'<div class="current-main">' +
+'<div class="current-icon">'+icon+'</div>' +
+'<div>' +
+'<div class="current-temp">'+temp+'<span>°C</span></div>' +
+'<div class="current-desc">'+desc+'</div>' +
+'<div class="current-location">'+S.loc+'</div>' +
+'</div>' +
+'</div>' +
+'<div class="current-details">' +
+'<div class="detail-item"><div class="detail-val">'+feels+'°</div><div class="detail-label">'+S.feels+'</div></div>' +
+'<div class="detail-item"><div class="detail-val">'+hum+'%</div><div class="detail-label">'+S.humidity+'</div></div>' +
+'<div class="detail-item"><div class="detail-val">'+wind+'</div><div class="detail-label">'+S.wind+' '+S.kmh+'</div></div>' +
+'<div class="detail-item"><div class="detail-val">'+rain+'<span style="font-size:11px">mm</span></div><div class="detail-label">'+S.rain+'</div></div>' +
+'<div class="detail-item"><div class="detail-val">'+press+'</div><div class="detail-label">'+S.pressure+'</div></div>' +
+'<div class="detail-item"><div class="detail-val" style="font-size:14px">'+wdir+'</div><div class="detail-label">'+S.windDir+'</div></div>' +
+'<div class="sun-row">🌅 '+S.sunrise+' <b>'+sunrise+'</b>  •  🌇 '+S.sunset+' <b>'+sunset+'</b></div>' +
+'</div>' +
+'</div>';
+}
+
+function renderSea() {
+var lang = curLang(), S = STR[lang];
+var box = document.getElementById("sea-status-box");
+var sumEl = document.getElementById("sea-summary");
+var gridEl = document.getElementById("sea-hours-grid");
+var noteEl = document.getElementById("sea-note");
+
+if (!state.wx || !state.wx.current) { box.className = "loading"; box.innerHTML = "<span>⏳</span>"; return; }
+
+var windNow = Math.round(state.wx.current.wind_speed_10m);
+var windDirNow = state.wx.current.wind_direction_10m;
+
+var waveH = null, waveDir = null, approx = false;
+if (state.marine && state.marine.current && state.marine.current.wave_height != null) {
+waveH = state.marine.current.wave_height;
+waveDir = state.marine.current.wave_direction;
+}
+if (waveH == null) {
+ waveH = estWave(windNow);
+waveDir = windDirNow;
+ approx = true;
+}
+
+var st = seaStatus(waveH, lang);
+
+box.className = "";
+box.innerHTML =
+'<div class="sea-status '+st.cls+'">' +
+'<div class="sea-icon">'+st.icon+'</div>' +
+'<div class="sea-text"><h3>'+st.t+'</h3><p>'+st.d+'</p></div>' +
+'</div>';
+
+sumEl.innerHTML =
+'<div class="sea-summary">' +
+'<div class="sea-sum-item"><div class="sea-sum-val">'+waveH.toFixed(1)+' م</div><div class="sea-sum-label">'+S.waveH+'</div></div>' +
+'<div class="sea-sum-item"><div class="sea-sum-val" style="font-size:14px">'+compass(waveDir,lang)+'</div><div class="sea-sum-label">'+S.waveDir+'</div></div>' +
+'<div class="sea-sum-item"><div class="sea-sum-val">'+windNow+' '+S.kmh+'</div><div class="sea-sum-label">'+S.windSp+'</div></div>' +
+'</div>';
+
+var html = '<div class="sea-hours">';
+var mh = (state.marine && state.marine.hourly && state.marine.hourly.time) ? state.marine.hourly : null;
+var wh = state.wx.hourly ? state.wx.hourly.wind_speed_10m : null;
+var times = mh ? mh.time : (state.wx.hourly ? state.wx.hourly.time : null);
+if (times) {
+var start = new Date().getHours();
+for (var k = 0; k < 6; k++) {
+var idx = start + k * 2;
+if (idx >= times.length) break;
+var t = new Date(times[idx]);
+var hStr = t.getHours().toString().padStart(2,"0") + ":00";
+var wv = wh && wh[idx] != null ? Math.round(wh[idx]) : windNow;
+var hv = (mh && mh.wave_height && mh.wave_height[idx] != null) ? mh.wave_height[idx] : estWave(wv);
+html += '<div class="sea-hour"><div class="time">'+hStr+'</div><div class="wave">🌊</div>' +
+'<div class="height">'+hv.toFixed(1)+' م</div>' +
+'<div class="wind">💨 '+wv+' '+S.kmh+'</div></div>';
+}
+}
+html += '</div>';
+gridEl.innerHTML = html;
+noteEl.textContent = approx ? S.seaNote + " (تقدير من الرياح)" : S.seaNote;
+}
+
+function renderTide() {
+var lang = curLang(), T = TIDE_STR[lang];
+document.getElementById("tide-title").textContent = T.title;
+document.getElementById("tide-low").textContent = T.low;
+document.getElementById("tide-high").textContent = T.high;
+document.getElementById("tide-note").textContent = T.note;
+
+var td = tideNow();
+var label = td.rising ? T.rising : T.falling;
+var icon = td.rising ? "🌊" : "🏖️";
+var state_txt = td.level >= 0 ? T.high_full : T.low_full;
+
+document.getElementById("tide-state").innerHTML = "<b>" + state_txt + "</b>";
+document.getElementById("tide-fill").style.width = td.pct + "%";
+document.getElementById("tide-label").innerHTML = icon + " " + label;
+
+var hoursGrid = document.getElementById("tide-hours-grid");
+var times = getTideHoursForToday();
+var hoursHtml = "";
+
+times.forEach(function(ev) {
+var typeLabel = ev.type === 'high' ? T.high : T.low;
+hoursHtml += '<div class="tide-hour-box">' +
+'<div class="tide-hour-type">' + typeLabel + '</div>' +
+'<div class="tide-hour-time">' + ev.time + '</div>' +
+'</div>';
+});
+
+if(hoursHtml === "") hoursHtml = "<div style='grid-column:1/-1; font-size:12px; color:var(--text3);'>—</div>";
+hoursGrid.innerHTML = hoursHtml;
+}
+
+function renderSafety() {
+var lang = curLang(), G = SAFETY[lang];
+document.getElementById("safety-title").textContent = G.title;
+var html = "";
+G.rows.forEach(function(r) {
+html += '<div class="safety-row">' +
+'<div class="safety-dot" style="background:'+r[0]+'"></div>' +
+'<div class="safety-txt"><b>'+r[1]+'</b><span>'+r[2]+'</span></div>' +
+'</div>';
+});
+document.getElementById("safety-list").innerHTML = html;
+}
+
+// الدالة البرمجية المحدثة: رسم النشرة الإسبوعية مع قياس المدى الحراري الأفقي
+function renderForecast() {
+var lang = curLang(), S = STR[lang];
+var box = document.getElementById("forecast-grid");
+if (!state.wx || !state.wx.daily) { box.className = "loading"; box.innerHTML = "<span>"+S.errF+"</span>"; return; }
+var d = state.wx.daily;
+var n = d.time.length;
+var todayStr = new Date().toISOString().split("T")[0];
+
+// خطوة حسابية للحصول على الحد الأقصى والأدنى المطلق خلال الأسبوع لرسم شريط المدى بنسب دقيقة
+var globalMax = Math.max.apply(null, d.temperature_2m_max);
+var globalMin = Math.min.apply(null, d.temperature_2m_min);
+var globalRange = globalMax - globalMin || 1;
+
+var html = '<div class="fc-list">';
+for (var i = 0; i < n && i < 7; i++) {
+var date = new Date(d.time[i]);
+var isToday = d.time[i] === todayStr;
+var name = isToday ? S.today : (i === 1 ? S.tomorrow : DAYS[lang][date.getDay()]);
+var icon = wmoIcon(d.weather_code[i], true);
+var desc = wmoDesc(d.weather_code[i], lang);
+var mx = Math.round(d.temperature_2m_max[i]);
+var mn = Math.round(d.temperature_2m_min[i]);
+var wmax = Math.round(d.wind_speed_10m_max[i]);
+var wdir = compass(d.wind_direction_10m_dominant[i], lang);
+
+// حسابات نسب الشريط الأفقي لكل يوم مقارنة بمدى درجات الحرارة الإجمالي للأسبوع
+var leftPct = ((mn - globalMin) / globalRange) * 100;
+var widthPct = ((mx - mn) / globalRange) * 100;
+// التأكد من ضبط النسب عند الاتجاه ltr أو rtl
+var isRTL = document.documentElement.getAttribute("dir") === "rtl";
+var barStyle = isRTL
+? 'right:' + leftPct + '%; width:' + widthPct + '%;'
+: 'left:' + leftPct + '%; width:' + widthPct + '%;';
+
+html += '<div class="fc-row'+(isToday?' today':'')+'">' +
+'<div class="fc-day">'+name+'</div>' +
+'<div class="fc-ico">'+icon+'</div>' +
+'<div class="fc-desc">'+desc+'</div>' +
+'<div class="fc-wind">💨 '+wmax+' <span style="font-size:10px;">'+S.kmh+'</span> · '+wdir+'</div>' +
+'<div class="fc-temp-container">' +
+'<div class="fc-temp-num mn">'+mn+'°</div>' +
+'<div class="fc-temp-bar-wrap">' +
+'<div class="fc-temp-bar-fill" style="' + barStyle + '"></div>' +
+'</div>' +
+'<div class="fc-temp-num mx">'+mx+'°</div>' +
+'</div>' +
+'</div>';
+}
+html += '</div>';
+box.className = "";
+box.innerHTML = html;
 }
 
 // ===== INIT =====
 (function() {
-  var lang = "ar", theme = "dark";
-  try { lang = localStorage.getItem("met_lang") || "ar"; theme = localStorage.getItem("met_theme") || "dark"; } catch(e) {}
-  if (theme === "light") { document.body.classList.add("light"); document.getElementById("theme-btn").textContent = "🌙"; }
-  setL(lang);
-  loadWeather();
-  loadForecast();
-  setInterval(loadWeather, 30 * 60 * 1000);
+var lang = "ar", theme = "dark";
+try { lang = localStorage.getItem("met_lang") || "ar"; theme = localStorage.getItem("met_theme") || "dark"; } catch(e) {}
+if (theme === "light") { document.body.classList.add("light"); document.getElementById("theme-btn").textContent = "🌙"; }
+tryCache();
+ setL(lang);
+ loadData();
+ setInterval(loadData, 30 * 60 * 1000);
 })();
 </script>
 </body>
